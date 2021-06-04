@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+ 
+<head>
+<meta http-equiv="content-type" content="text/html;charset=gbk"/>
+<title>层的移动</title>
+<style type="text/css">
+#ad{width:120px;height:120px;background:url(images/default.gif);position:relative;}
+</style>
+<script type="text/javascript">
+  var id;
+  var directionX=true,directionY=true;
+  var x=10,y=10;
+  var obj = null;
+  
+  
+  function init(){
+    obj = document.getElementById("ad");//获得对象
+    obj.style.posLeft = x;//对象属性设置
+    obj.style.posTop = y;
+    id = setInterval(move,100);//100ms重复执行move方法
+  }
+  
+  function move(){
+    var width=document.documentElement.clientWidth-obj.offsetWidth;
+    var height= document.documentElement.clientHeight-obj.offsetHeight;
+    if(x>=width ){//说明移 动到最右边
+      directionX = false;
+    }
+    if(x==0){//移动到最左边
+      directionX = true;
+    }
+    if(y >= height){
+      directionY = false;
+    }
+    if(y==0){
+      directionY = true;
+    }
+    if(directionX) 
+      x += 10;
+    else 
+      x -= 10;
+    
+    if(directionY) 
+      y += 10;
+    else 
+      y -= 10;
+    obj.style.posLeft = x;
+    obj.style.posTop = y;
+  }
+ 
+</script>
+ 
+</head>
+<body οnlοad="init()" >
+ 
+<div id="ad">
+  
+</div>
+</body>
+</html>
